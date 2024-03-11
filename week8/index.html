@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title> 3D Portfolio</title>
+
+    <!--css-->
+    <link rel = "stylesheet" href="style.css">
+
+    <!--three.js importmap-->
+    <script type="importmap">
+        {
+            "imports": {
+                "three":"https://ga.jspm.io/npm:three@0.158.0/build/three.module.js",
+                "OrbitControls":"https://ga.jspm.io/npm:three@0.158.0/examples/jsm/controls/OrbitControls.js",
+                "lil-gui":"https://ga.jspm.io/npm:lil-gui@0.19.1/dist/lil-gui.esm.js"
+            }
+        }
+    </script>
+
+    <!--threejs-->
+<script src = "script.js" type="module"> </script>
+
+</head>
+
+<body>
+    <!--canvas-->
+    <canvas class = "webgl"></canvas>
+
+    <!--splash-->
+    <section class = "splash">
+        <h1>Tyler De Las Llagas</h1>
+    </section>
+<!--Content-->
+
+<section class ="content" id = "first">
+    <h1>About me</h1>
+    <p>I am an Interactive Arts and Sciences student at Brock University. I am very interested in learning 3D modelling and video editing in my upcoming years.
+    </p>
+    <p> <span class="clickable" id = "click1">View Projects</span></p>
+</section>
+
+<section class ="content hidden" id = "second">
+    <h1>Interactive Essay</h1>
+    <p>For my interactive essay I chose to create a 3d mesh of a bouncy ball. The story contains two different perspectives of this ball, one in a playful way and the other in a more serious life dictating way.</p>
+    <p> <span class="clickable" id = "click2">Next Project</span></p>
+</section>
+
+<section class ="content hidden" id = "third">
+
+    <h1>Data Visualization</h1>
+    <p>I plan to write my data visualization about the comic Flashpoint.</p>
+    <p> <span class="clickable" id = "click3">Back to home</span></p>
+
+</section>
+
+
+
+</body>
