@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import * as dat from "lil-gui"
 import { OrbitControls } from "OrbitControls"
-
+const x = 0, y = 0;
 /****
 ** SETUP **
 ***/
@@ -53,32 +53,42 @@ scene.add(directionalLight)
 /***
 ** MESHES **
 ****/
-// Cube Geometry
-const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+const heartShape = new THREE.Shape();
+heartShape.bezierCurveTo( x + 5, y + 5, x + 4, y, x, y );
+heartShape.bezierCurveTo( x - 6, y, x - 6, y + 7,x - 6, y + 7 );
+heartShape.bezierCurveTo( x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19 );
+heartShape.bezierCurveTo( x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7 );
+heartShape.bezierCurveTo( x + 16, y + 7, x + 16, y, x + 10, y );
+heartShape.bezierCurveTo( x + 7, y, x + 5, y + 5, x + 5, y + 5 );
+
+// Heart Geometry
+const heartGeometry = new THREE.ShapeGeometry( heartShape );
 
 // Cube Materials
-const redMaterial = new THREE.MeshStandardMaterial({
-    color: new THREE.Color('red')
-})
-const greenMaterial = new THREE.MeshStandardMaterial({
-    color: new THREE.Color('green')
-})
 const blueMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color('blue')
 })
+const pinkMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color('pink')
+})
+const redMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color('red')
+})
 
-const drawCube = (i, material) =>
+const drawHeart = (i, material) =>
 {
-    const cube = new THREE.Mesh(cubeGeometry, material)
-    cube.position.x = (Math.random() - 0.5) * 10
-    cube.position.z = (Math.random() - 0.5) * 10
-    cube.position.y = i - 10
+    const heart = new THREE.Mesh(heartGeometry, material)
+    heart.position.x = (Math.random() - 0.5) * 10
+    heart.position.z = (Math.random() - 0.5) * 10
+    heart.position.y = i - 10
+    heart.scale.x = .05
+    heart.scale.y = .05
+    heart.scale.z = .05
+    heart.rotation.x = Math.random() * 2 * Math.PI
+    heart.rotation.y = Math.random() * 2 * Math.PI
+    heart.rotation.z = Math.random() * 2 * Math.PI
 
-    cube.rotation.x = Math.random() * 2 * Math.PI
-    cube.rotation.y = Math.random() * 2 * Math.PI
-    cube.rotation.z = Math.random() * 2 * Math.PI
-
-    scene.add(cube)
+    scene.add(heart)
 }
 
 
@@ -91,8 +101,8 @@ const uiobj = {
     text: '',
     textArray: [],
     term1: 'romeo',
-    term2: 'Juliet',
-    term3: 'Love',
+    term2: 'juliet',
+    term3: 'love',
     rotateCamera: false
    
 }
@@ -111,13 +121,13 @@ const parseTextandTerms = () =>
     //console.log(uiobj.textArray)
 
     // Find term 1
-    findTermInParsedText(uiobj.term1, redMaterial)
+    findTermInParsedText(uiobj.term1, blueMaterial)
 
     // Find term 2
-    findTermInParsedText(uiobj.term2, greenMaterial)
+    findTermInParsedText(uiobj.term2, pinkMaterial)
 
     // Find term 3
-    findTermInParsedText(uiobj.term3, blueMaterial)
+    findTermInParsedText(uiobj.term3, redMaterial)
 
 }
 
@@ -135,14 +145,14 @@ const findTermInParsedText = (term, material) =>
          // call drawCube function 5 times using converted n value
          for(let a=0; a < 5; a++)
          {
-            drawCube(n, material)
+            drawHeart(n, material)
          }
 
         }
     }
 }
 // Load source text
-fetch("https://folger-main-site-assets.s3.amazonaws.com/uploads/2022/11/romeo-and-juliet_TXT_FolgerShakespeare.txt")
+fetch("https://raw.githubusercontent.com/tylerdll/IASC-2P02/main/assignment2/assets/romeojuliet.txt")
     .then(response => response.text())
     .then((data) =>
     {
@@ -159,19 +169,19 @@ const ui = new dat.GUI({
 
 // Interaction Folders
 
-    // Cubes Folder
-    const cubesFolder = ui.addFolder('Filter Terms')
+    // hearts Folder
+    const heartsFolder = ui.addFolder('Filter Terms')
 
-    cubesFolder
-        .add(redMaterial, 'visible')
+    heartsFolder
+        .add(blueMaterial, 'visible')
         .name(`${uiobj.term1}`)
 
-    cubesFolder
-        .add(greenMaterial, 'visible')
+    heartsFolder
+        .add(pinkMaterial, 'visible')
         .name(`${uiobj.term2}`)
 
-    cubesFolder
-        .add(blueMaterial, 'visible')
+    heartsFolder
+        .add(redMaterial, 'visible')
         .name(`${uiobj.term3}`)
 
     // Camera Folder

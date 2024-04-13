@@ -57,14 +57,14 @@ scene.add(directionalLight)
 const sphereGeometry = new THREE.SphereGeometry(0.5)
 
 // sphere Materials
-const redMaterial = new THREE.MeshStandardMaterial({
-    color: new THREE.Color('red')
+const purpleMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color('purple')
 })
 const greenMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color('green')
 })
-const blueMaterial = new THREE.MeshStandardMaterial({
-    color: new THREE.Color('blue')
+const redMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color('red')
 })
 
 const drawSphere = (i, material) =>
@@ -114,13 +114,13 @@ const parseTextandTerms = () =>
     //console.log(uiobj.textArray)
 
     // Find term 1
-    findTermInParsedText(uiobj.term1, redMaterial)
+    findTermInParsedText(uiobj.term1, purpleMaterial)
 
     // Find term 2
     findTermInParsedText(uiobj.term2, greenMaterial)
 
     // Find term 3
-    findTermInParsedText(uiobj.term3, blueMaterial)
+    findTermInParsedText(uiobj.term3, redMaterial)
 
 }
 
@@ -145,7 +145,7 @@ const findTermInParsedText = (term, material) =>
     }
 }
 // Load source text
-fetch("https://folger-main-site-assets.s3.amazonaws.com/uploads/2022/11/romeo-and-juliet_TXT_FolgerShakespeare.txt")
+fetch("https://raw.githubusercontent.com/tylerdll/IASC-2P02/main/assignment2/assets/romeojuliet.txt")
     .then(response => response.text())
     .then((data) =>
     {
@@ -166,7 +166,7 @@ const ui = new dat.GUI({
     const spheresFolder = ui.addFolder('Filter Terms')
 
     spheresFolder
-        .add(redMaterial, 'visible')
+        .add(purpleMaterial, 'visible')
         .name(`${uiobj.term1}`)
 
         spheresFolder
@@ -174,7 +174,7 @@ const ui = new dat.GUI({
         .name(`${uiobj.term2}`)
 
         spheresFolder
-        .add(blueMaterial, 'visible')
+        .add(redMaterial, 'visible')
         .name(`${uiobj.term3}`)
 
         spheresFolder
