@@ -77,18 +77,49 @@ const redMaterial = new THREE.MeshStandardMaterial({
 
 const drawHeart = (i, material) =>
 {
-    const heart = new THREE.Mesh(heartGeometry, material)
-    heart.position.x = (Math.random() - 0.5) * 10
-    heart.position.z = (Math.random() - 0.5) * 10
-    heart.position.y = i - 10
-    heart.scale.x = .05
-    heart.scale.y = .05
-    heart.scale.z = .05
-    heart.rotation.x = Math.random() * 2 * Math.PI
-    heart.rotation.y = Math.random() * 2 * Math.PI
-    heart.rotation.z = Math.random() * 2 * Math.PI
-
-    scene.add(heart)
+    if (material == blueMaterial ){
+        const heart = new THREE.Mesh(heartGeometry, material)
+        heart.position.x = (Math.random() - 1.2) * 5
+        heart.position.z = (Math.random() - 0.5) * 1
+        heart.position.y = i - 10
+        heart.scale.x = .05
+        heart.scale.y = .05
+        heart.scale.z = .05
+        heart.rotation.x = Math.random() * 2 * Math.PI
+        heart.rotation.y = Math.random() * 2 * Math.PI
+        heart.rotation.z = Math.random() * 2 * Math.PI
+    
+        scene.add(heart)
+    }
+    else if (material == pinkMaterial ){
+        const heart = new THREE.Mesh(heartGeometry, material)
+        heart.position.x = (Math.random() + 0.4) * 5
+        heart.position.z = (Math.random() - 0.5) * 3
+        heart.position.y = i - 10
+        heart.scale.x = .05
+        heart.scale.y = .05
+        heart.scale.z = .05
+        heart.rotation.x = Math.random() * 2 * Math.PI
+        heart.rotation.y = Math.random() * 2 * Math.PI
+        heart.rotation.z = Math.random() * 2 * Math.PI
+    
+        scene.add(heart)
+    }
+    else{
+        const heart = new THREE.Mesh(heartGeometry, material)
+        heart.position.x = (Math.random() - 0.5) * 5
+        heart.position.z = (Math.random() - 0.5) * 3
+        heart.position.y = i - 10
+        heart.scale.x = .05
+        heart.scale.y = .05
+        heart.scale.z = .05
+        heart.rotation.x = Math.random() * 2 * Math.PI
+        heart.rotation.y = Math.random() * 2 * Math.PI
+        heart.rotation.z = Math.random() * 2 * Math.PI
+    
+        scene.add(heart)
+    }
+    
 }
 
 
